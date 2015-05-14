@@ -1,0 +1,20 @@
+{
+    "name": "Redalert",
+    "version": "1.0.0",
+    "description": "Broadcast Redalerts",
+    "dependencies": {
+        "socket.io": "*",
+        "express": "latest",
+        "ejs": "latest",
+        "underscore": "1.x",
+        "crypto": "*",
+        "body-parser": "*",
+        "request": "*",
+        "cookie-parser": "*",
+        "cookie-session": "*",
+        "express-session ": "*",
+        "node-ka-patch": "*"
+
+    },
+    "author": "Alon Carmel"
+}
