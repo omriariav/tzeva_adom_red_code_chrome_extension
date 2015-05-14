@@ -1,0 +1,30 @@
+{
+    "name": "צבע אדום - Tzeva Adom Alerts",
+    "description": "צבע אדום - Tzeva Adom Alerts - התראות בזמן אמת מפיקוד העורף לגבי ירי טילים על ישראל",
+    "short_name": "צבע אדום - Tzeva Adom Alerts",
+    "homepage_url": "http://www.twitter.com/omriariav",
+    "icons": { "16": "icons/16x16.png", "48": "icons/48x48.png", "128": "icons/128x128.png" },
+    "browser_action": {
+        "default_icon": {
+            "19": "icons/19x19.png",
+            "38": "icons/38x38.png"
+        },
+        "default_title": "Tzeva Adom - צבע אדום",
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "notifications",
+        "webRequest",
+        "http://socket.rocketalert.me:3020/*"
+    ],
+    "background": {
+        "scripts": ["resources/js_css/jquery-1.11.0.js", "background.js"],
+        "presistene": false
+    },
+    "web_accessible_resources": [
+        "popup.html"
+    ],
+    "content_security_policy": "script-src 'self' https://platform.twitter.com/widgets.js https://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/md5.js https://cdn.socket.io/socket.io-1.0.0.js https://ssl.google-analytics.com; object-src 'self'",
+    "version": "1.7",
+    "manifest_version": 2
+}

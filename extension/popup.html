@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        @import url(http://fonts.googleapis.com/earlyaccess/alefhebrew.css);
+        body{
+            padding:20px;
+            font-family: "Alef Hebrew", "Helvetica Neue", Helvetica, Arial, sans-serif!important;
+            text-align: right!important;
+            width:400px;
+            max-height: 950px;
+            direction: rtl!important;
+        }
+        .wrapper {
+            width:95%;
+            margin: auto;
+            text-align: right;
+        }
+        .form_elements {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .btn-trans {
+            background-color: transparent;
+            border-color: #ccc !important;
+            color: #428bca!important;
+            margin: 15px;
+        }
+        #date_span {
+            font-style: italic;
+        }
+        #alerts {
+            width:90%;
+            margin:auto;
+        }
+        #my-tab-content {
+            border:#ddd solid 1px;
+        }
+        #alert_area {
+            color: red;
+            font-weight: bold;
+        }
+        label {
+            font-weight: 400!important;
+        }
+        @-webkit-keyframes yellow-fade {
+            0% {background: yellow;}
+            100% {background: none;}
+        }
+
+        @keyframes yellow-fade {
+            0% {background: yellow;}
+            100% {background: none;}
+        }
+
+        .list-group-item {
+            text-align: justify!important;
+        }
+        .highlight {
+            -webkit-animation: yellow-fade 2s ease-in 1!important;
+            animation: yellow-fade 2s ease-in 1!important;
+        }
+
+        #nothing {
+            margin-top: 25px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            word-wrap: break-word;
+            font-weight: 600;
+        }
+        .chosen-container-multi .chosen-choices li.search-field input[type=text] {
+            font-size: 15px!important;
+            height: 20px!important;
+            padding: 0!important;
+            margin:0!important;
+            font-family: inherit!important;
+        }
+        .chosen-container .chosen-results {
+            height: 350px!important;
+            max-height: 350px!important;
+            margin-bottom: 3px!important;
+        }
+        .chosen-drop {
+            height:350px!important;
+        }
+        #about_area {
+            padding: 5px;
+            margin-bottom: 5px;
+            word-wrap: break-word;
+        }
+        #sharer {
+            text-align: center;
+            padding:20px;
+        }
+        #real_status {
+            color: red;
+        }
+    </style>
+    <script src="resources/js_css/jquery-1.11.0.js" type="text/javascript"></script>
+    <link href="resources/js_css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/chosen/chosen.min.css" rel="stylesheet">
+    <script src="resources/js_css/bootstrap.min.js"></script>
+    <script src="resources/chosen/chosen.jquery.min.js" type="text/javascript"></script>
+    <script src="resources/js_css/md5.js"></script>
+    <script src="popup.js" type="text/javascript"></script>
+</head>
+<body>
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#alerts" data-toggle="tab">אזעקות</a></li>
+    <li><a href="#settings" data-toggle="tab">הגדרות</a></li>
+    <li><a href="#share" data-toggle="tab">שתפו!</a></li>
+    <li><a href="#about" data-toggle="tab">אודות</a></li>
+</ul>
+<div id="my-tab-content" class="tab-content">
+    <div class="tab-pane active" id="alerts">
+        <div id="nothing"></div>
+        <ul class="list-group" id="list_alerts" style="padding-right: 0;margin-top: 20px;"></ul>
+    </div>
+    <div class="tab-pane" id="settings">
+        <div class="wrapper">
+            <div class="select form_elements" id="select_area">
+                <label>
+                    בחירת ערים עבור התרעות
+
+                    <br/>
+
+                </label>
+            </div>
+            <div class="checkbox form_elements" id="sound_area">
+                <label style="font-weight: normal;padding-left:0px;">
+                    בחירת צליל להתרעה
+                    <select id="sound">
+                        <option value="0" selected>ללא קול</option>
+                        <option value="resources/sounds/annoy.mp3">שעון מעורר</option>
+                        <option value="resources/sounds/siren.mp3">אזעקת התקף לב</option>
+                        <option value="resources/sounds/siren_long.mp3">אזעקה להתעורר משינה</option>
+                        <option value="resources/sounds/shalom.mp3">שיר לשלום</option>
+                        <option value="resources/sounds/selfie.mp3">סלפי</option>
+                        <option value="resources/sounds/rocket.mp3">רוקט מאן</option>
+                        <option value="resources/sounds/titan.mp3">טיטאניום</option>
+                        <option value="resources/sounds/happy.mp3">שמח ונחמד</option>
+                        <option value="resources/sounds/lukash.mp3">המחסל שיר אהבה</option>
+                        <option value="resources/sounds/ding.mp3">סתם דינג</option>
+                        <option value="resources/sounds/koom_bigueem.mp3">קום תעשה ביגועים</option>
+                    </select>
+                    <span id="sound_btn" class="glyphicon glyphicon-play"></span>
+                </label>
+            </div>
+
+            <div id="alerts_counter_selection" class="form_elements">
+                <label>
+                    מספר התרעות לשמירה בהיסטוריית האזעקות:
+                    <select id="alerts_counter">
+                        <option value="10">10</option>
+                        <option value="30" selected>30</option>
+                        <option value="50">75</option>
+                        <option value="100">100</option>
+                        <option value="250">250</option>
+                    </select>
+                </label>
+            </div>
+            <div id="alerts_old_selection" class="form_elements">
+                <label>
+                    זמן התרעות לשמירה בהיסטוריית האזעקות:
+                    <select id="alerts_old">
+                        <option value="30">30 דקות</option>
+                        <option value="60" selected>שעה</option>
+                        <option value="120">שעתיים</option>
+                        <option value="360">6 שעות</option>
+                        <option value="720">12 שעות</option>
+                        <option value="1440">24 שעות</option>
+                        <option value="10080">שבוע</option>
+                    </select>
+                </label>
+            </div>
+            <div id="ttl_notifications" class="form_elements">
+                <label>
+                    מספר שניות להצגת התרעה על המסך:
+                    <select id="ttl_alerts">
+                        <option value="5000" selected>5 שניות</option>
+                        <option value="7000">7 שניות</option>
+                        <option value="10000">10 שניות</option>
+                        <option value="12000">12 שניות</option>
+                        <option value="15000">15 שניות</option>
+                    </select>
+                </label>
+            </div>
+            <div id="silent_area" class="form_elements">
+                <label>
+                    <input id="silent_mode" type="checkbox" checked>&nbsp;הצג התרעות (ללא קול) עבור שאר הערים</label>
+            </div>
+            <div id="badge_area" class="form_elements">
+                <label>
+                    <input id="badge_mode" type="checkbox" checked>&nbsp;הצג את מספר ההתרעות על האייקון של התוסף</label>
+            </div>
+            <div id="alert_area" class="form_elements">
+                <p class="text-info">השימוש בתוסף על אחריות המשתמש בלבד. הנתונים על פי פיקוד העורף, יש לנהוג לפי כללי כוחות הביטחון</p>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="share">
+        <div id="sharer">
+            <h4>
+                שתפו והפיצו ברשתות החברתיות:
+            </h4>
+            <button class="btn btn-default btn-trans" id="tweetbutton">Twitter</button>
+            <br>
+            <button class="btn btn-default btn-trans" id="fbbutton">Facebook</button>
+        </div>
+    </div>
+    <div class="tab-pane" id="about">
+        <div id="about_area"><p><h4>צבע אדום - Tzeva Adom Alerts - התראות בזמן אמת מפיקוד העורף לגבי ירי טילים על ישראל</h4>
+            תוסף זה מקבל התרעות על שיגורים על סמך מידע מפיקוד העורף (צבע אדום), ושולח אותם למשתמשים.<br>
+            זה אינו תוסף רשמי של משרד הבטחון, פיקוד העורף או כל גורם אחר. כמוכן התוסף אינו מחליף ערוצי התרעה רשמיים -- השמעו להוראות פיקוד העורף ושימו לב לאזעקות אמיתיות. תוסף זה בא בתור שירות נוסף ולא כתחליף.
+            כרגע התוסף בשלבי פיתוח ראשונים, ולא כל היכולות זמינות. נשמח מאוד שתורידו, תנסו ותתנו פידבק במייל:
+            omri.ariav@gmail.com<br>
+            </p>
+            <p>
+                לינק לאפליקציית האנדרואיד:<a href=“https://play.google.com/store/apps/details?id=me.rocketalert.rocketalert” target=“_blank”>https://play.google.com/store/apps/details?id=me.rocketalert.rocketalert</a>
+                <br>
+                לינק לאפליקציית האייפון:<a href=“ https://itunes.apple.com/il/app/zmn-mt-z-qwt-zb-dwm
+                id899269450?mt=8” target=“_blank”> https://itunes.apple.com/il/app/zmn-mt-z-qwt-zb-dwm
+                id899269450?mt=8</a>
+                <br>
+            </p>
+            <p>
+                <br>פותח על ידי עמרי אריאב
+                <a href=“mailto:omri.ariav@gmail.com”>omri.ariav@gmail.com</a><br>
+                <br>אני גם בטוויטר: <a href=“http://www.twitter.com/omriariav” target=“_blank”>http://www.twitter.com/omriariav</a>
+                <br>תודה מיוחדת לאלון כרמל ואריק פריימוביץ-אלמוג
+            </p>
+        </div>
+    </div>
+</div>
+<div id="real_status">לא מחובר (לוודא חיבור ולהתחיל מחדש)
+</div>
+</body>
+</html>
